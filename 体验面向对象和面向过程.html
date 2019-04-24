@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            width:200px;
+            height: 200px;
+            background: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+<button type="button" id="btn">显示隐藏</button>
+<div id="div"></div>
+<script>
+   /* document.getElementById('btn').onclick=function(){
+        document.getElementById('div').style.backgroundColor ='#0EED2A'
+    }*/
+  /* function ChangColor (btnId,divId,color){
+       this.btnObj = document.getElementById(btnId);
+       this.divObj = document.getElementById(divId);
+       this.color = color;
+   }
+   ChangColor.prototype.init = function(){
+       //this.divObj.style.backgroundColor=this.color;
+       console.log(this) //this就是实例对象
+       var that = this;
+       this.btnObj.onclick = function(){
+           that.divObj.style.backgroundColor=that.color;
+           console.log(this)  //this.btnObj就是当前对象
+       }
+   };
+    var cs = new ChangColor('btn','div','#0EED2A');
+   cs.init();
+   */
+   /*
+   * 在原型里谁调用的原型里的方法，this就指向谁
+   *
+   * */
+
+
+    function ChangeStyle (btnObj,divObj,json){
+        this.btnObj = btnObj;
+        this.divObj = divObj;
+        this.json = json;
+    }
+    ChangeStyle.prototype.init = function(){
+        var that = this;
+        this.btnObj.onclick = function(){
+            for (var key in that.json){
+                that.divObj.style[key] = that.json[key];
+            }
+        }
+    }
+var json = {
+        width:"300px",
+    height:"300px",
+    backgroundColor:"#ED3392",
+    opacity:"0.5"
+}
+    var cs1 = new ChangeStyle(document.getElementById('btn'),document.getElementById('div'),json);
+   cs1.init()
+
+
+</script>
+</body>
+</html>

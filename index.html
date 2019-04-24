@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>
+    提交
+</button>
+<script src="./jquery.min.js"></script>
+<script>
+    $(function(){
+        $('button').click(function(){
+            $.ajax({
+                type:'GET',
+                url: 'http://127.0.0.1:80/apis/users',                success:function(data){
+                        document.write(data)
+                        console.log(data)
+                    }
+                })
+            })
+        })
+</script>
+<script src="构造函数和实例对象之间的关系.js"></script>
+<script src="简单的原型写法.js"></script>
+<script src="原型指向改变后添加原型方法.js"></script>
+
+</body>
+</html>
